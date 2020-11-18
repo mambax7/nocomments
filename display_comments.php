@@ -80,9 +80,9 @@ if ($xoopsUser) {
         $checkstatus  = $user->isOnline();
         $status = $checkstatus > 0 ? 'Online' : 'Offline';
 
-        $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . '/' . $icon . '"></img>';
+        $comment_image = '' !== ($icon = '') ? '' : '<img src="' . XOOPS_UPLOAD_URL . '/' . $icon . '"></img>';
 
-        if ($avatar == '') {
+        if ('' == $avatar) {
             $avatar = 'blank.gif';
         }
         $uname    = $user->getVar('uname');
@@ -101,7 +101,7 @@ if ($xoopsUser) {
 			</tr>';
 
         echo '<tr>';
-        if ($id != 0) {
+        if (0 != $id) {
             echo '
           <td class="odd">
 			<div class="comUserRank"><div class="comUserRankText">' . $rank_title . '</div><img class="comUserRankImg" src="' . $rank_image . '" alt=""></div>
@@ -188,9 +188,9 @@ while ($row = $xoopsDB->fetchArray($query)) {
     $checkstatus  = $user->isOnline();
     $status = $checkstatus > 0 ? 'Online' : 'Offline';
 
-    $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . '/' . $icon . '" alt=""></img>';
+    $comment_image = '' !== ($icon = '') ? '' : '<img src="' . XOOPS_UPLOAD_URL . '/' . $icon . '" alt=""></img>';
 
-    if ($avatar == '') {
+    if ('' == $avatar) {
         $avatar = 'blank.gif';
     }
     $uname    = $user->getVar('uname');
@@ -209,7 +209,7 @@ while ($row = $xoopsDB->fetchArray($query)) {
 			</tr>';
 
     echo '<tr>';
-    if ($id != 0) {
+    if (0 != $id) {
         echo '
           <td class="odd">
 			<div class="comUserRank"><div class="comUserRankText">' . $rank_title . '</div><img class="comUserRankImg" src="' . $rank_image . '" alt=""></div>

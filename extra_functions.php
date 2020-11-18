@@ -18,7 +18,7 @@ function sanitize($text)
 function ae_detect_ie()
 {
     if (isset($_SERVER['HTTP_USER_AGENT'])
-        && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) {
+        && (false !== strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE'))) {
         return true;
     } else {
         return false;

@@ -36,10 +36,10 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
     xoops_loadLanguage('comment');
 
     $comment_config = $xoopsModule->getInfo('comments');
-    $com_itemid     = (trim($comment_config['itemName']) != '' && isset($_GET[$comment_config['itemName']])) ? (int) $_GET[$comment_config['itemName']] : 0;
+    $com_itemid     = ('' != trim($comment_config['itemName']) && isset($_GET[$comment_config['itemName']])) ? (int)$_GET[$comment_config['itemName']] : 0;
     if ($com_itemid > 0) {
         $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : '';
-        if ($com_mode == '') {
+        if ('' == $com_mode) {
             if (is_object($xoopsUser)) {
                 $com_mode = $xoopsUser->getVar('umode');
             }
@@ -51,7 +51,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         } else {
             $com_order = (int) $_GET['com_order'];
         }
-        if ($com_order != XOOPS_COMMENT_OLD1ST) {
+        if (XOOPS_COMMENT_OLD1ST != $com_order) {
             $xoopsTpl->assign(
                 [
                     'comment_order' => XOOPS_COMMENT_NEW1ST,
@@ -73,13 +73,13 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $com_id         = isset($_GET['com_id']) ? (int) $_GET['com_id'] : 0;
         $com_rootid     = isset($_GET['com_rootid']) ? (int) $_GET['com_rootid'] : 0;
         $commentHandler = xoops_getHandler('comment');
-        if ($com_mode == 'flat') {
+        if ('flat' == $com_mode) {
             $comments = $commentHandler->getByItemId($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
             require_once $GLOBALS['xoops']->path('class/commentrenderer.php');
             $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
             $renderer->setComments($comments);
             $renderer->renderFlatView($admin_view);
-        } elseif ($com_mode == 'thread') {
+        } elseif ('thread' == $com_mode) {
             // RMV-FIX... added extraParam stuff here
             $comment_url = $comment_config['pageName'] . '?';
             if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
@@ -147,23 +147,23 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
 <table width="95%" class="outer" cellspacing="1">
   <tr>
     <td class="even" style="text-align:center;"><select name="com_mode"><option value="flat"';
-        if ($com_mode == 'flat') {
+        if ('flat' == $com_mode) {
             $navbar .= ' selected="selected"';
         }
         $navbar .= '>' . _FLAT . '</option><option value="thread"';
-        if ($com_mode == 'thread' || $com_mode == '') {
+        if ('thread' == $com_mode || '' == $com_mode) {
             $navbar .= ' selected="selected"';
         }
         $navbar .= '>' . _THREADED . '</option><option value="nest"';
-        if ($com_mode == 'nest') {
+        if ('nest' == $com_mode) {
             $navbar .= ' selected="selected"';
         }
         $navbar .= '>' . _NESTED . '</option></select> <select name="com_order"><option value="' . XOOPS_COMMENT_OLD1ST . '"';
-        if ($com_order == XOOPS_COMMENT_OLD1ST) {
+        if (XOOPS_COMMENT_OLD1ST == $com_order) {
             $navbar .= ' selected="selected"';
         }
         $navbar .= '>' . _OLDESTFIRST . '</option><option value="' . XOOPS_COMMENT_NEW1ST . '"';
-        if ($com_order == XOOPS_COMMENT_NEW1ST) {
+        if (XOOPS_COMMENT_NEW1ST == $com_order) {
             $navbar .= ' selected="selected"';
         }
         unset($postcomment_link);
