@@ -2,9 +2,9 @@
 // Include all language files from your module, if no exist then use default english
 if (!defined('_CM_TITLE')) {
 if (file_exists('language/'.$GLOBALS['xoopsConfig']['language'].'/noitemcomments_lang.php')) {
-  include_once 'language/'.$GLOBALS['xoopsConfig']['language'].'/noitemcomments_lang.php';
+  require_once __DIR__ . '/language/'.$GLOBALS['xoopsConfig']['language'].'/noitemcomments_lang.php';
 }else{
-  include_once 'language/english/noitemcomments_lang.php';
+  require_once __DIR__ . '/language/english/noitemcomments_lang.php';
 
 }
 }
@@ -27,7 +27,7 @@ $dohtml = '';
 $commenthackid = $xoopsModuleConfig['hackcomid'];
 
 // Sanitize all $_REQUESTS
-$myts =& MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 foreach ($_REQUEST as $key => $value) {
 	$_REQUEST[$key]= $myts -> stripSlashesGPC(($_REQUEST[$key]));
 }
@@ -39,10 +39,10 @@ $sql= "select * from ".$xoopsDB->prefix('xoopscomments')." where com_itemid='".$
 	if ( $xoopsUser ){
 	if ($i<=0) {
 //******************** CHANGE FOLDER NAME TO YOUR MODULE **************************
-		echo '<br/><div style="text-align:center;"><a id="slick-togglewrite" href="'.XOOPS_ROOT_PATH.'/modules/nocomments/comment_new.php?com_itemid='.$commentItemID.'">'._MI_NOITEMCOMMENTS_WRITENEW.'</a></div><br/>';
+		echo '<br><div style="text-align:center;"><a id="slick-togglewrite" href="'.XOOPS_ROOT_PATH.'/modules/nocomments/comment_new.php?com_itemid='.$commentItemID.'">'._MI_NOITEMCOMMENTS_WRITENEW.'</a></div><br>';
 		echo '<div id="nocomments_combox" style="display: none;">';
 		} else {
-		echo '<br/><div style="text-align:center;"><a id="slick-togglewrite" href="javascript:void(0)">'._MI_NOITEMCOMMENTS_WRITENEW.'</a>'.'&nbsp;&nbsp;|&nbsp;&nbsp;<a id="slick-toggle" href="javascript:void(0)">'._MI_NOITEMCOMMENTS_SEEALL.'</a><br/></div>';
+		echo '<br><div style="text-align:center;"><a id="slick-togglewrite" href="javascript:void(0)">'._MI_NOITEMCOMMENTS_WRITENEW.'</a>'.'&nbsp;&nbsp;|&nbsp;&nbsp;<a id="slick-toggle" href="javascript:void(0)">'._MI_NOITEMCOMMENTS_SEEALL.'</a><br></div>';
 		echo '<div id="nocomments_combox" style="display: none;">';
 		}
 	
@@ -114,8 +114,8 @@ $sql= "select * from ".$xoopsDB->prefix('xoopscomments')." where com_itemid='".$
 		if ($id !=0) {
 		echo'
           <td class="odd">
-			<div class="comUserRank"><div class="comUserRankText">'.$rank_title.'</div><img class="comUserRankImg" src="'.$rank_image.'" alt="" /></div>
-			<img class="comUserImg" src="'.$user_img.'" alt="" />
+			<div class="comUserRank"><div class="comUserRankText">'.$rank_title.'</div><img class="comUserRankImg" src="'.$rank_image.'" alt=""></div>
+			<img class="comUserImg" src="'.$user_img.'" alt="">
 			<div class="comUserStat"><span class="comUserStatCaption">'._MI_NOITEMCOMMENTS_MEMBERSINCE.':</span> '.$regdate.'</div>
 			<div class="comUserStat"><span class="comUserStatCaption">'._MI_NOITEMCOMMENTS_LOCATION.':</span> '.$userLocation.'</div>
 			<div class="comUserStat"><span class="comUserStatCaption">'._MI_NOITEMCOMMENTS_POSTS.':</span> '.$numposts.'</div>
@@ -138,16 +138,16 @@ $sql= "select * from ".$xoopsDB->prefix('xoopscomments')." where com_itemid='".$
 
 
           echo '<td class="even" style="text-align:right;">
-            <a href="comment_edit.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_EDIT.'"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit" /></a>
-			<a href="comment_delete.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_DELETE.'"><img src="'.XOOPS_URL.'/images/icons/delete.gif" alt="_delete" /></a>
+            <a href="comment_edit.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_EDIT.'"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit"></a>
+			<a href="comment_delete.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_DELETE.'"><img src="'.XOOPS_URL.'/images/icons/delete.gif" alt="_delete"></a>
           </td>';
 		  }
           
 		  /* IF user posting then show edit delete
-		  elseif ($xoops_isuser == true && $xoops_userid == $uid) {
+		  elseif ($xoops_isuser === true && $xoops_userid == $uid) {
 
           echo '<td class="even" align="right">
-            <a href="comment_edit.php?com_id='.$id.'" title="_edit"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit" /></a>
+            <a href="comment_edit.php?com_id='.$id.'" title="_edit"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit"></a>
 				</td>';
 		  }*/
 		 }
@@ -166,10 +166,10 @@ $sql= "select * from ".$xoopsDB->prefix('xoopscomments')." where com_itemid='".$
 }
 else
 if ($i<=0) {
-		echo '<br/><div style="text-align:center;"><a href="'.XOOPS_URL.'/register.php">Register</a> or <a href="'.XOOPS_URL.'/user.php">login</a> to post comment</div><br/>';
+		echo '<br><div style="text-align:center;"><a href="'.XOOPS_URL.'/register.php">Register</a> or <a href="'.XOOPS_URL.'/user.php">login</a> to post comment</div><br>';
 		echo '<div id="nocomments_combox" style="display: none;">';
 		} else {
-		echo '<br/><div style="text-align:center;"><a href="'.XOOPS_URL.'/register.php">Register</a> or <a href="'.XOOPS_URL.'/user.php">login</a> to post comment'.'&nbsp;&nbsp;|&nbsp;&nbsp;<a id="slick-toggle" href="javascript:void(0)">'._MI_NOITEMCOMMENTS_SEEALL.'</a></div><br/>';
+		echo '<br><div style="text-align:center;"><a href="'.XOOPS_URL.'/register.php">Register</a> or <a href="'.XOOPS_URL.'/user.php">login</a> to post comment'.'&nbsp;&nbsp;|&nbsp;&nbsp;<a id="slick-toggle" href="javascript:void(0)">'._MI_NOITEMCOMMENTS_SEEALL.'</a></div><br>';
 		echo '<div id="nocomments_combox" style="display: none;">';
 		}
 	
@@ -240,8 +240,8 @@ if ($i<=0) {
 		if ($id !=0) {
 		echo'
           <td class="odd">
-			<div class="comUserRank"><div class="comUserRankText">'.$rank_title.'</div><img class="comUserRankImg" src="'.$rank_image.'" alt="" /></div>
-			<img class="comUserImg" src="'.$user_img.'" alt="" />
+			<div class="comUserRank"><div class="comUserRankText">'.$rank_title.'</div><img class="comUserRankImg" src="'.$rank_image.'" alt=""></div>
+			<img class="comUserImg" src="'.$user_img.'" alt="">
 			<div class="comUserStat"><span class="comUserStatCaption">'._MI_NOITEMCOMMENTS_MEMBERSINCE.':</span> '.$regdate.'</div>
 			<div class="comUserStat"><span class="comUserStatCaption">'._MI_NOITEMCOMMENTS_LOCATION.':</span> '.$userLocation.'</div>
 			<div class="comUserStat"><span class="comUserStatCaption">'._MI_NOITEMCOMMENTS_POSTS.':</span> '.$numposts.'</div>
@@ -264,16 +264,16 @@ if ($i<=0) {
 
 
           echo '<td class="even" style="text-align:right;">
-            <a href="comment_edit.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_EDIT.'"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit" /></a>
-			<a href="comment_delete.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_DELETE.'"><img src="'.XOOPS_URL.'/images/icons/delete.gif" alt="_delete" /></a>
+            <a href="comment_edit.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_EDIT.'"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit"></a>
+			<a href="comment_delete.php?com_id='.$id.'" title="'._MI_NOITEMCOMMENTS_DELETE.'"><img src="'.XOOPS_URL.'/images/icons/delete.gif" alt="_delete"></a>
           </td>';
 		  }
           
 		  /* IF user posting then show edit delete
-		  elseif ($xoops_isuser == true && $xoops_userid == $uid) {
+		  elseif ($xoops_isuser === true && $xoops_userid == $uid) {
 
           echo '<td class="even" align="right">
-            <a href="comment_edit.php?com_id='.$id.'" title="_edit"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit" /></a>
+            <a href="comment_edit.php?com_id='.$id.'" title="_edit"><img src="'.XOOPS_URL.'/images/icons/edit.gif" alt="_edit"></a>
 				</td>';
 		  }*/
 		 }

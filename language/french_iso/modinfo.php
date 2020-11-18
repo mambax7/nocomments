@@ -40,6 +40,6 @@ define('_NOCOMMENTS_BEGIN7', '<ul><li>Ouvez le fichier xoop_version.php de <stro
 <li>Ouvrez le fichier display_comments.php et faites comme indiqué à la ligne 41.</li>
 <li>Ouvrez le fichier preloads/core.php et suivez les indications des lignes commentées.</li></ul>');
 
-define('_NOCOMMENTS_BEGIN8', '<p>Au final : <strong>Mettez à jour votre module !</strong></p><p>Nota : ce hack requiert une version XOOPS version 2.4.0 ou supérieure. <a href="http://www.xoops.org/modules/core/" rel="external">Mettre à jour sa version de XOOPS</a> si vous désirez le mettre en oeuvre !</p><div style="font-size:1.1em; font-weight: bold; text-align: center;"><a href="#">Télécharger le code Source</a></div>');
+define('_NOCOMMENTS_BEGIN8', '<p>Au final : <strong>Mettez à jour votre module !</strong></p><p>Nota : ce hack requiert une version XOOPS version 2.4.0 ou supérieure. <a href="https://www.xoops.org/modules/core/" rel="external">Mettre à jour sa version de XOOPS</a> si vous désirez le mettre en oeuvre !</p><div style="font-size:1.1em; font-weight: bold; text-align: center;"><a href="#">Télécharger le code Source</a></div>');
 }
 ?>

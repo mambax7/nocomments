@@ -1,14 +1,14 @@
 <?php 
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 // *****************Change:  nocommentsCorePreload to your module name. Eg.: mymoduleCorePreload********************
 class nocommentsCorePreload extends XoopsPreloadItem{
 
     function eventCoreHeaderAddmeta(){
 	global $xoTheme;
-	$module_handler =& xoops_gethandler('module');
+	$moduleHandler = xoops_getHandler('module');
 	//******************** CHANGE FOLDER NAME TO YOUR MODULE **************************
-	$module = $module_handler->getByDirname('nocomments');
-	$config_handler =& xoops_gethandler('config');
+	$module = $moduleHandler->getByDirname('nocomments');
+	$configHandler = xoops_getHandler('config');
 	
 		$xoTheme->addScript('browse.php?Frameworks/jquery/jquery.js');	
 		$xoops_url= XOOPS_URL;

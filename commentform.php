@@ -3,11 +3,11 @@ global $xoopsModuleConfig;
 if (!defined('_CM_TITLE')) {
 // Include all language files from your module, if no exist then use default english
 if (file_exists('language/'.$GLOBALS['xoopsConfig']['language'].'/noitemcomments_lang.php')) {
-  include_once 'language/'.$GLOBALS['xoopsConfig']['language'].'/noitemcomments_lang.php';
-  include_once XOOPS_ROOT_PATH.'/language/'.$GLOBALS["xoopsConfig"]["language"].'/comment.php';
+  require_once __DIR__ . '/language/'.$GLOBALS['xoopsConfig']['language'].'/noitemcomments_lang.php';
+  require_once XOOPS_ROOT_PATH.'/language/'.$GLOBALS["xoopsConfig"]["language"].'/comment.php';
 }else{
-  include_once 'language/english/noitemcomments_lang.php';
-  include_once XOOPS_ROOT_PATH.'/language/english/comment.php';
+  require_once __DIR__ . '/language/english/noitemcomments_lang.php';
+  require_once XOOPS_ROOT_PATH.'/language/english/comment.php';
 }
 }
 // Overwrite any existing $variables
@@ -47,7 +47,7 @@ echo '<div id="nocomments_comwrite" style="display: none;">';
 		xoops_load('XoopsFormLoader');
 		$cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", 'comment_post.php', 'post', true);
 		if (isset($xoopsModuleConfig['com_rule'])) {
-			include_once $GLOBALS['xoops']->path('include/comment_constants.php');
+			require_once $GLOBALS['xoops']->path('include/comment_constants.php');
 			switch ($xoopsModuleConfig['com_rule']) {
 				case XOOPS_COMMENT_APPROVEALL:
 					$rule_text = _CM_COMAPPROVEALL;
@@ -67,11 +67,11 @@ echo '<div id="nocomments_comwrite" style="display: none;">';
 		$icons_radio = new XoopsFormRadio(_MESSAGEICON, 'com_icon', $com_icon);
 		$subject_icons = XoopsLists::getSubjectsList();
 		foreach ($subject_icons as $iconfile) {
-			$icons_radio->addOption($iconfile, '<img src="' . XOOPS_URL . '/images/subject/' . $iconfile . '" alt="" />');
+			$icons_radio->addOption($iconfile, '<img src="' . XOOPS_URL . '/images/subject/' . $iconfile . '" alt="">');
 		}
 		$cform->addElement($icons_radio);
 		$cform->addElement(new XoopsFormDhtmlTextArea(_CM_MESSAGE, 'com_text', $com_text, 10, 50), true);
-		$option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
+		$option_tray = new XoopsFormElementTray(_OPTIONS, '<br>');
 		$button_tray = new XoopsFormElementTray('', '&nbsp;');
 
 		if (is_object($xoopsUser)) {
@@ -81,10 +81,10 @@ echo '<div id="nocomments_comwrite" style="display: none;">';
 				$noname_checkbox->addOption(1, _POSTANON);
 				$option_tray->addElement($noname_checkbox);
 			}
-			if (false != $xoopsUser->isAdmin($com_modid)) {
+			if (false !== $xoopsUser->isAdmin($com_modid)) {
 				// show status change box when editing (comment id is not empty)
 				if (!empty($com_id)) {
-					include_once $GLOBALS['xoops']->path('include/comment_constants.php');
+					require_once $GLOBALS['xoops']->path('include/comment_constants.php');
 					$status_select = new XoopsFormSelect(_CM_STATUS, 'com_status', $com_status);
 					$status_select->addOptionArray(array(
 						XOOPS_COMMENT_PENDING => _CM_PENDING ,
@@ -124,13 +124,13 @@ echo '<div id="nocomments_comwrite" style="display: none;">';
 		if ('system' != $xoopsModule->getVar('dirname')) {
 			$comment_config = $xoopsModule->getInfo('comments');
 			if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
-				$myts =& MyTextSanitizer::getInstance();
+				$myts = MyTextSanitizer::getInstance();
 				foreach ($comment_config['extraParams'] as $extra_param) {
 					// This routine is included from forms accessed via both GET and POST
 					if (isset($_POST[$extra_param])) {
-						$hidden_value = $myts->stripSlashesGPC($_POST[$extra_param]);
+						$hidden_value = ($_POST[$extra_param]);
 					} else if (isset($_GET[$extra_param])) {
-						$hidden_value = $myts->stripSlashesGPC($_GET[$extra_param]);
+						$hidden_value = ($_GET[$extra_param]);
 					} else {
 						$hidden_value = '';
 					}
