@@ -7,18 +7,18 @@
  * @Translator      kris (http://www.xoofoo.org)
  *
  * @version         $Id $
-**/
+ **/
 
-define ('_MI_NOITEMCOMMENTS_WRITENEW', 'Ecrire un nouveau commentaire');
-define ('_MI_NOITEMCOMMENTS_SEEALL', 'Afficher tous les commentaires');
-define ('_MI_NOITEMCOMMENTS_BY', 'Rédigé par ');
-define ('_MI_NOITEMCOMMENTS_DATEPOSTED', 'Posté');
-define ('_MI_NOITEMCOMMENTS_MODERATED', 'Edité');
-define ('_MI_NOITEMCOMMENTS_MEMBERSINCE', 'Utilisateur depuis');
-define ('_MI_NOITEMCOMMENTS_LOCATION', 'Résidence');
-define ('_MI_NOITEMCOMMENTS_POSTS', 'Contributions');
-define ('_MI_NOITEMCOMMENTS_EDIT', 'Editer');
-define ('_MI_NOITEMCOMMENTS_DELETE', 'Effacer');
+define('_MI_NOITEMCOMMENTS_WRITENEW', 'Ecrire un nouveau commentaire');
+define('_MI_NOITEMCOMMENTS_SEEALL', 'Afficher tous les commentaires');
+define('_MI_NOITEMCOMMENTS_BY', 'Rédigé par ');
+define('_MI_NOITEMCOMMENTS_DATEPOSTED', 'Posté');
+define('_MI_NOITEMCOMMENTS_MODERATED', 'Edité');
+define('_MI_NOITEMCOMMENTS_MEMBERSINCE', 'Utilisateur depuis');
+define('_MI_NOITEMCOMMENTS_LOCATION', 'Résidence');
+define('_MI_NOITEMCOMMENTS_POSTS', 'Contributions');
+define('_MI_NOITEMCOMMENTS_EDIT', 'Editer');
+define('_MI_NOITEMCOMMENTS_DELETE', 'Effacer');
 
 define('_CM_TITLE', 'Titre');
 define('_CM_MESSAGE', 'Message');
@@ -57,4 +57,3 @@ define('_CM_COMAPPROVEUSER', 'Seuls les commentaires des utilisateurs enregistr�
 define('_CM_COMAPPROVEADMIN', 'Tous les commentaires doivent être approuvés par l\'administrateur');
 define('_CM_COMANONPOST', 'Autoriser les anonymes à rédiger des commentaires ?');
 define('_CM_COMNOCOM', 'Commentaires désactivés');
-?>

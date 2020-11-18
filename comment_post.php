@@ -25,5 +25,4 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 require dirname(__DIR__, 2) . '/mainfile.php';
-require XOOPS_ROOT_PATH.'/include/comment_post.php';
-?>
+require XOOPS_ROOT_PATH . '/include/comment_post.php';

@@ -1,14 +1,15 @@
 <?php
-define ('_MI_NOITEMCOMMENTS_WRITENEW', 'Write new comment');
-define ('_MI_NOITEMCOMMENTS_SEEALL', 'See all comments');
-define ('_MI_NOITEMCOMMENTS_BY', 'Written by ');
-define ('_MI_NOITEMCOMMENTS_DATEPOSTED', 'Posted');
-define ('_MI_NOITEMCOMMENTS_MODERATED', 'Edited');
-define ('_MI_NOITEMCOMMENTS_MEMBERSINCE', 'Member since');
-define ('_MI_NOITEMCOMMENTS_LOCATION', 'Location');
-define ('_MI_NOITEMCOMMENTS_POSTS', 'Posts');
-define ('_MI_NOITEMCOMMENTS_EDIT', 'Edit');
-define ('_MI_NOITEMCOMMENTS_DELETE', 'Delete');
+
+define('_MI_NOITEMCOMMENTS_WRITENEW', 'Write new comment');
+define('_MI_NOITEMCOMMENTS_SEEALL', 'See all comments');
+define('_MI_NOITEMCOMMENTS_BY', 'Written by ');
+define('_MI_NOITEMCOMMENTS_DATEPOSTED', 'Posted');
+define('_MI_NOITEMCOMMENTS_MODERATED', 'Edited');
+define('_MI_NOITEMCOMMENTS_MEMBERSINCE', 'Member since');
+define('_MI_NOITEMCOMMENTS_LOCATION', 'Location');
+define('_MI_NOITEMCOMMENTS_POSTS', 'Posts');
+define('_MI_NOITEMCOMMENTS_EDIT', 'Edit');
+define('_MI_NOITEMCOMMENTS_DELETE', 'Delete');
 
 define('_CM_TITLE', 'Title');
 define('_CM_MESSAGE', 'Message');
@@ -47,4 +48,3 @@ define('_CM_COMAPPROVEUSER', 'Comments by registered users are always approved')
 define('_CM_COMAPPROVEADMIN', 'All comments need to be approved by administrator');
 define('_CM_COMANONPOST', 'Allow anonymous post in comments?');
 define('_CM_COMNOCOM', 'Disable comments');
-?>
