@@ -76,7 +76,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         if ('flat' == $com_mode) {
             $comments = $commentHandler->getByItemId($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
             require_once $GLOBALS['xoops']->path('class/commentrenderer.php');
-            $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
+            $renderer = XoopsCommentRenderer::instance($xoopsTpl);
             $renderer->setComments($comments);
             $renderer->renderFlatView($admin_view);
         } elseif ('thread' == $com_mode) {
@@ -105,7 +105,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                 $comments = $commentHandler->getThread($com_rootid, $com_id);
                 if (false !== $comments) {
                     require_once $GLOBALS['xoops']->path('class/commentrenderer.php');
-                    $renderer = &XoopsCommentRenderer::instance($xoopsTpl);
+                    $renderer = XoopsCommentRenderer::instance($xoopsTpl);
                     $renderer->setComments($comments);
                     $renderer->renderThreadView($com_id, $admin_view);
                 }
@@ -118,7 +118,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                         $comments = $commentHandler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));
                         if (false !== $comments) {
                             require_once $GLOBALS['xoops']->path('class/commentrenderer.php');
-                            $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
+                            $renderer = XoopsCommentRenderer::instance($xoopsTpl);
                             $renderer->setComments($comments);
                             $renderer->renderThreadView($top_comments[$i]->getVar('com_id'), $admin_view);
                         }
@@ -134,7 +134,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                 for ($i = 0; $i < $c_count; $i++) {
                     $comments = $commentHandler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));
                     require_once $GLOBALS['xoops']->path('class/commentrenderer.php');
-                    $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
+                    $renderer = XoopsCommentRenderer::instance($xoopsTpl);
                     $renderer->setComments($comments);
                     $renderer->renderNestView($top_comments[$i]->getVar('com_id'), $admin_view);
                 }
