@@ -36,7 +36,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
     xoops_loadLanguage('comment');
 
     $comment_config = $xoopsModule->getInfo('comments');
-    $com_itemid     = (trim($comment_config['itemName']) != '' && isset($_GET[$comment_config['itemName']])) ? intval($_GET[$comment_config['itemName']]) : 0;
+    $com_itemid     = (trim($comment_config['itemName']) != '' && isset($_GET[$comment_config['itemName']])) ? (int) $_GET[$comment_config['itemName']] : 0;
     if ($com_itemid > 0) {
         $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : '';
         if ($com_mode == '') {
@@ -47,13 +47,9 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         }
         $xoopsTpl->assign('comment_mode', $com_mode);
         if (!isset($_GET['com_order'])) {
-            if (is_object($xoopsUser)) {
-                $com_order = $xoopsUser->getVar('uorder');
-            } else {
-                $com_order = $xoopsConfig['com_order'];
-            }
+            $com_order = is_object($xoopsUser) ? $xoopsUser->getVar('uorder') : $xoopsConfig['com_order'];
         } else {
-            $com_order = intval($_GET['com_order']);
+            $com_order = (int) $_GET['com_order'];
         }
         if ($com_order != XOOPS_COMMENT_OLD1ST) {
             $xoopsTpl->assign(
@@ -72,15 +68,10 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
             );
             $com_dborder = 'ASC';
         }
-        // admins can view all comments and IPs, others can only view approved(active) comments
-        if (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
-            $admin_view = true;
-        } else {
-            $admin_view = false;
-        }
+        $admin_view = is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->getVar('mid'));
 
-        $com_id         = isset($_GET['com_id']) ? intval($_GET['com_id']) : 0;
-        $com_rootid     = isset($_GET['com_rootid']) ? intval($_GET['com_rootid']) : 0;
+        $com_id         = isset($_GET['com_id']) ? (int) $_GET['com_id'] : 0;
+        $com_rootid     = isset($_GET['com_rootid']) ? (int) $_GET['com_rootid'] : 0;
         $commentHandler = xoops_getHandler('comment');
         if ($com_mode == 'flat') {
             $comments = $commentHandler->getByItemId($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
@@ -109,7 +100,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                 $comment_url .= $extra_params;
             }
             $xoopsTpl->assign('comment_url', $comment_url . $comment_config['itemName'] . '=' . $com_itemid . '&amp;com_mode=thread&amp;com_order=' . $com_order);
-            if (!empty($com_id) && !empty($com_rootid) && ($com_id != $com_rootid)) {
+            if (!empty($com_id) && !empty($com_rootid) && ($com_id !== $com_rootid)) {
                 // Show specific thread tree
                 $comments = $commentHandler->getThread($com_rootid, $com_id);
                 if (false !== $comments) {
@@ -121,7 +112,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
             } else {
                 // Show all threads
                 $top_comments = $commentHandler->getTopComments($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
-                $c_count      = count($top_comments);
+                $c_count      = is_array($top_comments) || $top_comments instanceof \Countable ? count($top_comments) : 0;
                 if ($c_count > 0) {
                     for ($i = 0; $i < $c_count; $i++) {
                         $comments = $commentHandler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));
@@ -138,7 +129,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         } else {
             // Show all threads
             $top_comments = $commentHandler->getTopComments($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
-            $c_count      = count($top_comments);
+            $c_count      = is_array($top_comments) || $top_comments instanceof \Countable ? count($top_comments) : 0;
             if ($c_count > 0) {
                 for ($i = 0; $i < $c_count; $i++) {
                     $comments = $commentHandler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));

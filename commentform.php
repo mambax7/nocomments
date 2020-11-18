@@ -116,8 +116,8 @@ if (is_object($xoopsUser)) {
     if (!$xoopsUser) {
         $cform->addElement(new XoopsFormCaptcha());
     }
-    $cform->addElement(new XoopsFormHidden('com_pid', intval($com_pid)));
-    $cform->addElement(new XoopsFormHidden('com_rootid', intval($com_rootid)));
+    $cform->addElement(new XoopsFormHidden('com_pid', (int) $com_pid));
+    $cform->addElement(new XoopsFormHidden('com_rootid', (int) $com_rootid));
     $cform->addElement(new XoopsFormHidden('com_id', $com_id));
 
     // com_itemid hardwired to show 9999 + mid.

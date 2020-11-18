@@ -10,9 +10,8 @@ function sanitize($text)
     $text = str_replace("\n\r", "\n", $text);
     $text = str_replace("\r\n", "\n", $text);
     $text = str_replace("\n", "<br>", $text);
-    $text = str_replace("\"", "'", $text);
 
-    return $text;
+    return str_replace("\"", "'", $text);
 }
 
 // If IE then we might need to insert dummy <div>

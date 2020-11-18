@@ -28,7 +28,7 @@ $commenthackid = $xoopsModuleConfig['hackcomid'];
 
 // Sanitize all $_REQUESTS
 $myts = MyTextSanitizer::getInstance();
-foreach ($_REQUEST as $key => $value) {
+foreach (array_keys($_REQUEST) as $key) {
     $_REQUEST[$key] = $myts->stripSlashesGPC(($_REQUEST[$key]));
 }
 
@@ -78,17 +78,9 @@ if ($xoopsUser) {
         $userLocation = $user->user_from($row['com_uid']);
         $numposts     = $user->getVar("posts");
         $checkstatus  = $user->isOnline();
-        if ($checkstatus > 0) {
-            $status = "Online";
-        } else {
-            $status = "Offline";
-        }
+        $status = $checkstatus > 0 ? "Online" : "Offline";
 
-        if ($icon = '') {
-            $comment_image = '';
-        } else {
-            $comment_image = '<img src="' . XOOPS_UPLOAD_URL . "/" . $icon . '"></img>';
-        }
+        $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . "/" . $icon . '"></img>';
 
         if ($avatar == '') {
             $avatar = 'blank.gif';
@@ -194,17 +186,9 @@ while ($row = $xoopsDB->fetchArray($query)) {
     $userLocation = $user->user_from($row['com_uid']);
     $numposts     = $user->getVar("posts");
     $checkstatus  = $user->isOnline();
-    if ($checkstatus > 0) {
-        $status = "Online";
-    } else {
-        $status = "Offline";
-    }
+    $status = $checkstatus > 0 ? "Online" : "Offline";
 
-    if ($icon = '') {
-        $comment_image = '';
-    } else {
-        $comment_image = '<img src="' . XOOPS_UPLOAD_URL . "/" . $icon . '" alt=""></img>';
-    }
+    $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . "/" . $icon . '" alt=""></img>';
 
     if ($avatar == '') {
         $avatar = 'blank.gif';

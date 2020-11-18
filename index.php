@@ -1,6 +1,6 @@
 <?php
 
-include "../../mainfile.php";
+include __DIR__ . "../../mainfile.php";
 require XOOPS_ROOT_PATH . "/header.php";
 $xoopsOption['show_rblock'] = 1;
 
