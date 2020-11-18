@@ -2,12 +2,9 @@
 
 // Include all language files from your module, if no exist then use default english
 if (!defined('_CM_TITLE')) {
-    if (file_exists('language/' . $GLOBALS['xoopsConfig']['language'] . '/noitemcomments_lang.php')) {
-        require_once __DIR__ . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/noitemcomments_lang.php';
-    } else {
-        require_once __DIR__ . '/language/english/noitemcomments_lang.php';
-    }
+    xoops_loadLanguage('noitemcomments_lang', 'nocomments');
 }
+
 global $xoopsDB, $xoopsModule, $xoopsUser, $xoopsTpl, $xoopsModuleConfig;
 
 // Overwrite any existing $variables
@@ -28,9 +25,9 @@ $commenthackid = $xoopsModuleConfig['hackcomid'];
 
 // Sanitize all $_REQUESTS
 $myts = MyTextSanitizer::getInstance();
-foreach (array_keys($_REQUEST) as $key) {
-    $_REQUEST[$key] = $myts->stripSlashesGPC(($_REQUEST[$key]));
-}
+//foreach (array_keys($_REQUEST) as $key) {
+//    $_REQUEST[$key] = ($_REQUEST[$key]);
+//}
 
 $sql           = 'select * from ' . $xoopsDB->prefix('xoopscomments') . " where com_itemid='" . $commenthackid . $xoopsModule->getVar('mid') . "' ORDER by com_created DESC";
 $query         = $xoopsDB->queryF($sql);
@@ -46,7 +43,7 @@ if ($xoopsUser) {
         echo '<div id="nocomments_combox" style="display: none;">';
     }
 
-    while ($row = $xoopsDB->fetchArray($query)) {
+    while (false !== ($row = $xoopsDB->fetchArray($query))) {
         $id        = sanitize($row['com_id']);
         $pageid    = sanitize($row['com_pid']);
         $rootid    = sanitize($row['com_rootid']);
@@ -155,7 +152,7 @@ if ($xoopsUser) {
     echo '<div id="nocomments_combox" style="display: none;">';
 }
 
-while ($row = $xoopsDB->fetchArray($query)) {
+while (false !== ($row = $xoopsDB->fetchArray($query))) {
     $id        = sanitize($row['com_id']);
     $pageid    = sanitize($row['com_pid']);
     $rootid    = sanitize($row['com_rootid']);

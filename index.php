@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '../../mainfile.php';
+require dirname(__DIR__, 2) . '/mainfile.php';
 require XOOPS_ROOT_PATH . '/header.php';
 $xoopsOption['show_rblock'] = 1;
 
@@ -43,11 +43,11 @@ if (file_exists('language/' . $GLOBALS['xoopsConfig']['language'] . '/noitemcomm
 <?php
 //********************FOR COMMENTS, ADD THIS TO YOUR MODULE AND CHANGE FOLDER NAME TO YOUR MODULE **************************
 // Include the extra functions to use in the commenthack includes
-include(XOOPS_ROOT_PATH . '/modules/nocomments/extra_functions.php');
+require __DIR__ . '/extra_functions.php';
 // Include display of comments
-include(XOOPS_ROOT_PATH . '/modules/nocomments/display_comments.php');
+require __DIR__ . '/display_comments.php';
 // Include commentform to show the form to make comments
-include(XOOPS_ROOT_PATH . '/modules/nocomments/commentform.php');
+require __DIR__ . '/commentform.php';
 //********************END**************************
 
 require XOOPS_ROOT_PATH . '/footer.php';
