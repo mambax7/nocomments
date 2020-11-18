@@ -5,7 +5,7 @@ if (!defined('_CM_TITLE')) {
     // Include all language files from your module, if no exist then use default english
     if (file_exists('language/' . $GLOBALS['xoopsConfig']['language'] . '/noitemcomments_lang.php')) {
         require_once __DIR__ . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/noitemcomments_lang.php';
-        require_once XOOPS_ROOT_PATH . '/language/' . $GLOBALS["xoopsConfig"]["language"] . '/comment.php';
+        require_once XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/comment.php';
     } else {
         require_once __DIR__ . '/language/english/noitemcomments_lang.php';
         require_once XOOPS_ROOT_PATH . '/language/english/comment.php';
@@ -36,7 +36,7 @@ if (is_object($xoopsUser)) {
 if (is_object($xoopsUser)) {
     // Check if IE, sometimes we need to insert an empty DIV, if display looks wrong // mark the line 13 to disable this check
     if (ae_detect_ie()) {
-        echo "<div>";
+        echo '<div>';
     }
 
     echo '<div id="nocomments_comwrite" style="display: none;">';
@@ -47,7 +47,7 @@ if (is_object($xoopsUser)) {
 
     xoops_load('XoopsLists');
     xoops_load('XoopsFormLoader');
-    $cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", 'comment_post.php', 'post', true);
+    $cform = new XoopsThemeForm(_CM_POSTCOMMENT, 'commentform', 'comment_post.php', 'post', true);
     if (isset($xoopsModuleConfig['com_rule'])) {
         require_once $GLOBALS['xoops']->path('include/comment_constants.php');
         switch ($xoopsModuleConfig['com_rule']) {
@@ -121,7 +121,7 @@ if (is_object($xoopsUser)) {
     $cform->addElement(new XoopsFormHidden('com_id', $com_id));
 
     // com_itemid hardwired to show 9999 + mid.
-    $cform->addElement(new XoopsFormHidden('com_itemid', $commenthackid . $xoopsModule->getVar("mid")));
+    $cform->addElement(new XoopsFormHidden('com_itemid', $commenthackid . $xoopsModule->getVar('mid')));
     $cform->addElement(new XoopsFormHidden('com_order', $com_order));
     $cform->addElement(new XoopsFormHidden('com_mode', $com_mode));
 

@@ -4,12 +4,12 @@ $modversion['name']        = '' . _NOCOMMENTS_MODULE_NAME . '';
 $modversion['version']     = 1.00;
 $modversion['description'] = '' . _NOCOMMENTS_MODULEDESC . '';
 $modversion['author']      = '' . _NOCOMMENTS_AUTHOR . '';
-$modversion['credits']     = "";
-$modversion['help']        = "";
-$modversion['license']     = "GPL see LICENSE";
+$modversion['credits']     = '';
+$modversion['help']        = '';
+$modversion['license']     = 'GPL see LICENSE';
 $modversion['official']    = 0;
-$modversion['image']       = "img/nocomments.gif";
-$modversion['dirname']     = "nocomments";
+$modversion['image']       = 'img/nocomments.gif';
+$modversion['dirname']     = 'nocomments';
 // Admin things
 $modversion['hasAdmin'] = 0;
 // Menu/Sub Menu

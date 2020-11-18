@@ -50,7 +50,7 @@ define('_CM_DELETESELECT', 'Effacer tous les commentaires liés ?');
 define('_CM_DELETEONE', 'Non, effacer uniquement ce commentaire');
 define('_CM_DELETEALL', 'Oui, tout effacer');
 define('_CM_THANKSPOST', 'Merci pour le commentaire !');
-define('_CM_NOTICE', "Les commentaires sont la propriété de leurs auteurs. Nous ne sommes en aucun cas responsable de leur contenu.");
+define('_CM_NOTICE', 'Les commentaires sont la propriété de leurs auteurs. Nous ne sommes en aucun cas responsable de leur contenu.');
 define('_CM_COMRULES', 'Règles des commentaires');
 define('_CM_COMAPPROVEALL', 'Les commentaires sont automatiquemnt approuvés');
 define('_CM_COMAPPROVEUSER', 'Seuls les commentaires des utilisateurs enregistrés sont automatiquement approuvés');

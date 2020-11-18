@@ -32,10 +32,10 @@ foreach (array_keys($_REQUEST) as $key) {
     $_REQUEST[$key] = $myts->stripSlashesGPC(($_REQUEST[$key]));
 }
 
-$sql           = "select * from " . $xoopsDB->prefix('xoopscomments') . " where com_itemid='" . $commenthackid . $xoopsModule->getVar('mid') . "' ORDER by com_created DESC";
+$sql           = 'select * from ' . $xoopsDB->prefix('xoopscomments') . " where com_itemid='" . $commenthackid . $xoopsModule->getVar('mid') . "' ORDER by com_created DESC";
 $query         = $xoopsDB->queryF($sql);
 $i             = $xoopsDB->getRowsNum($query);
-$commentItemID = $commenthackid . $xoopsModule->getVar("mid");
+$commentItemID = $commenthackid . $xoopsModule->getVar('mid');
 if ($xoopsUser) {
     if ($i <= 0) {
         //******************** CHANGE FOLDER NAME TO YOUR MODULE **************************
@@ -53,8 +53,8 @@ if ($xoopsUser) {
         $moid      = sanitize($row['com_modid']);
         $itemid    = sanitize($row['com_itemid']);
         $icon      = sanitize($row['com_icon']);
-        $created   = sanitize((date("d-m-Y H:i:s", $row['com_created'])));
-        $modified  = sanitize((date("d-m-Y H:i:s", $row['com_modified'])));
+        $created   = sanitize((date('d-m-Y H:i:s', $row['com_created'])));
+        $modified  = sanitize((date('d-m-Y H:i:s', $row['com_modified'])));
         $userid    = sanitize($row['com_uid']);
         $ip        = sanitize($row['com_ip']);
         $title     = sanitize($row['com_title']);
@@ -72,23 +72,23 @@ if ($xoopsUser) {
         $avatar     = $user->user_avatar($row['com_uid']);
         $rank       = $user->rank($row['com_uid']);
         $rank_title = $rank['title'];
-        $rank_image = XOOPS_UPLOAD_URL . "/" . $rank['image'];
-        $regdate    = date("d-m-Y", $user->user_regdate($row['com_uid']));
+        $rank_image = XOOPS_UPLOAD_URL . '/' . $rank['image'];
+        $regdate    = date('d-m-Y', $user->user_regdate($row['com_uid']));
 
         $userLocation = $user->user_from($row['com_uid']);
-        $numposts     = $user->getVar("posts");
+        $numposts     = $user->getVar('posts');
         $checkstatus  = $user->isOnline();
-        $status = $checkstatus > 0 ? "Online" : "Offline";
+        $status = $checkstatus > 0 ? 'Online' : 'Offline';
 
-        $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . "/" . $icon . '"></img>';
+        $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . '/' . $icon . '"></img>';
 
         if ($avatar == '') {
             $avatar = 'blank.gif';
         }
         $uname    = $user->getVar('uname');
-        $userinfo = "<a href='" . XOOPS_URL . "/modules/profile/userinfo.php?uid=" . $userid . "' title='" . $uname . "'>" . $uname . "</a>";
+        $userinfo = "<a href='" . XOOPS_URL . '/modules/profile/userinfo.php?uid=' . $userid . "' title='" . $uname . "'>" . $uname . '</a>';
         $user_img = XOOPS_UPLOAD_URL . '/' . $avatar;
-        $ip       = $_SERVER["REMOTE_ADDR"];
+        $ip       = $_SERVER['REMOTE_ADDR'];
 
         // Showing comments from query
 
@@ -144,7 +144,7 @@ if ($xoopsUser) {
         echo '</tr>
 <!-- end comment post -->
 </table>';
-        echo "</div>";
+        echo '</div>';
     }
     echo '</div>';
 } elseif ($i <= 0) {
@@ -162,8 +162,8 @@ while ($row = $xoopsDB->fetchArray($query)) {
     $moid      = sanitize($row['com_modid']);
     $itemid    = sanitize($row['com_itemid']);
     $icon      = sanitize($row['com_icon']);
-    $created   = sanitize((date("d-m-Y H:i:s", $row['com_created'])));
-    $modified  = sanitize((date("d-m-Y H:i:s", $row['com_modified'])));
+    $created   = sanitize((date('d-m-Y H:i:s', $row['com_created'])));
+    $modified  = sanitize((date('d-m-Y H:i:s', $row['com_modified'])));
     $userid    = sanitize($row['com_uid']);
     $ip        = sanitize($row['com_ip']);
     $title     = sanitize($row['com_title']);
@@ -181,22 +181,22 @@ while ($row = $xoopsDB->fetchArray($query)) {
     $avatar       = $user->user_avatar($row['com_uid']);
     $rank         = $user->rank($row['com_uid']);
     $rank_title   = $rank['title'];
-    $rank_image   = XOOPS_UPLOAD_URL . "/" . $rank['image'];
-    $regdate      = date("d-m-Y", $user->user_regdate($row['com_uid']));
+    $rank_image   = XOOPS_UPLOAD_URL . '/' . $rank['image'];
+    $regdate      = date('d-m-Y', $user->user_regdate($row['com_uid']));
     $userLocation = $user->user_from($row['com_uid']);
-    $numposts     = $user->getVar("posts");
+    $numposts     = $user->getVar('posts');
     $checkstatus  = $user->isOnline();
-    $status = $checkstatus > 0 ? "Online" : "Offline";
+    $status = $checkstatus > 0 ? 'Online' : 'Offline';
 
-    $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . "/" . $icon . '" alt=""></img>';
+    $comment_image = ($icon = '') !== '' ? '' : '<img src="' . XOOPS_UPLOAD_URL . '/' . $icon . '" alt=""></img>';
 
     if ($avatar == '') {
         $avatar = 'blank.gif';
     }
     $uname    = $user->getVar('uname');
-    $userinfo = "<a href='" . XOOPS_URL . "/modules/profile/userinfo.php?uid=" . $userid . "' title='" . $uname . "'>" . $uname . "</a>";
+    $userinfo = "<a href='" . XOOPS_URL . '/modules/profile/userinfo.php?uid=' . $userid . "' title='" . $uname . "'>" . $uname . '</a>';
     $user_img = XOOPS_UPLOAD_URL . '/' . $avatar;
-    $ip       = $_SERVER["REMOTE_ADDR"];
+    $ip       = $_SERVER['REMOTE_ADDR'];
 
     // Showing comments from query
 
@@ -252,5 +252,5 @@ while ($row = $xoopsDB->fetchArray($query)) {
     echo '</tr>
 <!-- end comment post -->
 </table>';
-    echo "</div></div>";
+    echo '</div></div>';
 }
