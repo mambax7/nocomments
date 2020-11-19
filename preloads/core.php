@@ -5,7 +5,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 // *****************Change:  nocommentsCorePreload to your module name. Eg.: mymoduleCorePreload********************
 class nocommentsCorePreload extends XoopsPreloadItem
 {
-    public function eventCoreHeaderAddmeta()
+    public static function eventCoreHeaderAddmeta()
     {
         global $xoTheme;
         $moduleHandler = xoops_getHandler('module');
